@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Node
         uses: actions/setup-node@v2-beta
-          with:
-            node-version: 12
+        with:
+          node-version: 12
       - name: Install surge on CI server
         run: npm install -g surge
       - name: deploy to surge with secret-token
