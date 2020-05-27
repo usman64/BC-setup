@@ -1,0 +1,21 @@
+name: 'Surge Continuous Deployment'
+
+on:
+  push:
+    branch:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      name: Get Code
+      uses: actions/checkout@v2
+      name: Install Node
+      uses: actions/setup-node@v2-beta
+        with:
+          node-version: 12
+      name: Install surge on CI server
+      run: npm install -g surge
+      name: deploy to surge with secret-token
+      run: surge ./ bootcamp-setup-muhammad-usman-tariq.surge.sh --token ${{secrets.SURGE_TOKEN}}
